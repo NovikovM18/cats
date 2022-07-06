@@ -1,11 +1,14 @@
 .app {
-  width: 100%;
-  color: black;
-}
-
-.list {
   margin: 0 auto;
   width: 90%;
+  color: black;
+}
+.input {
+  margin-top: 20px;
+  width: 200px;
+}
+.list {
+  margin: 0 auto;
 }
 .box {
   display: flex;
@@ -14,5 +17,21 @@
   justify-content: center;
 }
 .photo {
-  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  border-radius: 20px;
+}
+.btn {
+  margin-bottom: 20px;
+}
+.table {
+  max-width: 90%;
+  font-size: 0.6rem;
+}
+td.mat-cell:last-of-type {
+  max-width: 280px;
+}
+td.mat-cell {
+  max-width: 280px;
 }
