@@ -3,31 +3,66 @@
   width: 90%;
   color: black;
 }
-.input {
-  margin-top: 20px;
+.controls {
+  margin: 20px 0;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+.title {
+  margin: 0 auto 20px;
   width: 200px;
+}
+.input {
+  width: 200px;
+}
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .list {
   margin: 0 auto;
+  &__p {
+    font-weight: 700;
+  }
 }
 .box {
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content:flex-start;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 }
 .photo {
-  margin-top: 20px;
   margin-bottom: 20px;
-  width: 80%;
   border-radius: 20px;
+  width: 100%;
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 }
 .btn {
   margin-bottom: 20px;
 }
 .table {
-  max-width: 90%;
+  width: 40%;
   font-size: 0.6rem;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 }
 td.mat-cell:last-of-type {
   max-width: 280px;

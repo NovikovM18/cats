@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cat } from './types';
 
+
+import {fromEvent, Observable} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,8 +34,12 @@ export class AppComponent {
     .subscribe((response) => {
       this.cats = response;
     });
-
   };
+
+  reloadCats() {
+    this.cats = [];
+    this.getCats();
+  }
 
   setCat(cat: Cat) {
     this.cat = cat;
@@ -54,8 +63,24 @@ export class AppComponent {
     return sa.filter(cat => cat.name.toLowerCase().includes(this.value.toLowerCase()));
   }
 
+  searchRsJX() {
+    const search = document.getElementById('search') as HTMLInputElement;
+    const search$ = fromEvent(search, 'input');
+
+    search$.pipe(
+      map(event => {
+        return (event.target as HTMLInputElement).value;
+      }),
+      debounceTime(500),
+      distinctUntilChanged(),
+    ).subscribe(value => {
+      this.value = value;
+    });
+  }
+
   ngOnInit() {
     this.getCats();
+    this.searchRsJX();
     this.setValues();
   }
 }
