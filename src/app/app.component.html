@@ -18,13 +18,22 @@
     >
       <mat-label>Filtered list by name</mat-label>
       <input matInput type="text" id="search">
-      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
-      </button>
     </mat-form-field>
   </div>
 
-  <h3 class="title">Please, select cat:</h3>
+  <h3
+  *ngIf="filterList(cats).length"
+    class="title"
+  >
+    Please, select cat:
+  </h3>
+  
+  <h3
+  *ngIf="!filterList(cats).length"
+    class="title"
+  >
+    No cat(((...
+  </h3>
   
   <div class="content">
     <div class="box">
@@ -40,19 +49,13 @@
           {{cat.name}}
         </mat-list-option>
       </mat-selection-list>
-      
-      <p 
-        *ngIf="catsList.selectedOptions.selected.length" 
-        class="list__p"
-      >
-        Selected cat: {{catsList.selectedOptions.selected[0]?.value}}
-      </p>
     </div>
     
     <div 
       *ngIf="cat" 
       class="box"
     >
+      <h3>{{cat.name}}</h3>
       <img 
         class="photo" 
         [src]="cat.image.url" 
@@ -88,3 +91,4 @@
     </div>
   </div>
 </div>
+<img src="../assets/cats-bg.jpeg" alt="" class="bg">

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cat } from './types';
-
-
-import {fromEvent, Observable} from 'rxjs';
+import {fromEvent} from 'rxjs';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
 
 
@@ -37,13 +35,21 @@ export class AppComponent {
   };
 
   reloadCats() {
+    this.cat = undefined;
     this.cats = [];
     this.getCats();
   }
 
   setCat(cat: Cat) {
     this.cat = cat;
-    this.catsOptions = Object.entries(cat).slice(1);
+    let arr = Object.entries(cat);
+    let w = Object.entries(arr[0][1]);
+    w[0][0] = 'width ' + w[0][0];
+    w[1][0] = 'width ' + w[1][0];
+    arr.shift();
+    arr.unshift(w[1]);
+    arr.unshift(w[0]);
+    this.catsOptions = arr.filter(el => el[0] !== 'image' && el[0] !== 'reference_image_id');
   };
 
   toogleInfo() {
@@ -82,5 +88,5 @@ export class AppComponent {
     this.getCats();
     this.searchRsJX();
     this.setValues();
-  }
+  };
 }
